@@ -83,7 +83,10 @@ public class Gasto extends Transaccion implements GestionDeFacturas<Gasto>{
 			System.out.println("Ingrese el medio de pago: ");
 			medioDePago = sc.nextLine();
 			System.out.println("Ingrese el monto total: ");
+			
 			montoTotal = sc.nextFloat();
+		
+
 			sc.nextLine();
 			System.out.println("Ingrese el destino: ");
 			destino = sc.nextLine();

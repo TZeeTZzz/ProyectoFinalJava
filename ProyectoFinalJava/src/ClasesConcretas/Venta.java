@@ -246,9 +246,6 @@ public class Venta extends Transaccion implements GestionDeFacturas<Venta>{
 		
 	}
 
-
-
-
 	@Override
 	public void eliminarFactura() {
 		
