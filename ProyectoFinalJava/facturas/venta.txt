@@ -1,7 +1,0 @@
-Datos de la transacción: 
-- ID transaccion: 4
-- Monto total: $222
-- Medio de pago: caca
-- Fecha de transaccion: 2023-07-10
-- ID empleado: 1
-- Tipo de transaccion: Venta

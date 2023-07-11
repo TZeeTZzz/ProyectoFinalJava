@@ -11,6 +11,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -264,9 +265,8 @@ public class ManejoDeArchivos {
 		
 	}
 	
-	
 	public void eliminarArchivo() {
-		System.out.println("Seleccione la factura que desea leer: ");
+		System.out.println("Seleccione la factura que desea eliminar: ");
 		String carpetaDestino = "facturas";
 
 		File carpeta = new File(carpetaDestino);
@@ -337,8 +337,106 @@ public class ManejoDeArchivos {
 		
 	}
 	
-	public static void volverUnaSeccionAtras(AtomicBoolean volverHaciaAtras) {			
-		volverHaciaAtras.set(false);
+	public void actualizarArchivo() {
+		boolean realizarOtraAccion = true;
+		
+		while(realizarOtraAccion) {
+			System.out.println("Seleccione la factura que desea actualizar: ");
+			String carpetaDestino = "facturas";
+
+			File carpeta = new File(carpetaDestino);
+			ArrayList<File>listaDeArchivos = new ArrayList<>();
+			
+			try {
+				if(carpeta.exists() && carpeta.isDirectory()) {
+					
+					/* Creo una lista de tipo File que va a contener un listado de todos los archivos dentro de la carpeta*/
+					File[]archivos = carpeta.listFiles();
+					
+					/* Si la lista contiene algo, mostraremos su contenido, específicando un índice para que pueda ser seleccionado. */
+					if(archivos != null && archivos.length > 0) {
+						System.out.println("Facturas disponibles: ");
+						
+						for(File archivo : archivos) {
+							listaDeArchivos.add(archivo);
+							System.out.println(listaDeArchivos.size() - 1 + ". " + archivo.getName());
+						}
+						
+					}
+					
+					if(!listaDeArchivos.isEmpty()) {
+					
+					int facturaSeleccionada = sc.nextInt();
+					
+					/* Obtenemos, si es que existe una facturta con ese índice, los datos de esa factura, asignandole a un objeto de 
+					 * tipo File el nombre de la factura seleccionada (la cuál se buscará según el índice insertado). */
+					if(facturaSeleccionada >=0 && facturaSeleccionada <= listaDeArchivos.size()) {
+						File archivoSeleccionado = listaDeArchivos.get(facturaSeleccionada);
+						
+						FileWriter escritor = new FileWriter(archivoSeleccionado);
+						BufferedWriter buffer = new BufferedWriter(escritor);
+						System.out.println("ID transaccion: ");
+						idTransaccion = sc.nextInt();
+						System.out.println("Destino: ");
+						destino = sc.nextLine();
+						System.out.println("Tipo de transaccion: ");
+						String tipoDeTransaccion = sc.nextLine();
+						System.out.println("Fecha de transaccion: ");
+						System.out.println("Dia: ");
+						int dia = sc.nextInt();
+						System.out.println("Mes: ");
+						int mes = sc.nextInt();
+						System.out.println("Año: ");
+						int año = sc.nextInt();
+						LocalDate fechaDeTransaccion = LocalDate.of(año, mes, dia);
+						Date fechaDeTransaccionDate = Date.valueOf(fechaDeTransaccion);
+
+						
+						
+						String datosStringParaActualizar = "Datos de la transaccion: \n"
+								+ "- ID transaccion: " + idTransaccion + "\n"
+								+ "- Destino: " + destino + "\n"
+								+ "- Fecha de transaccion: " + fechaDeTransaccionDate + "\n"
+								+ "- Tipo de transaccion: " + tipoDeTransaccion;
+						
+						buffer.write(datosStringParaActualizar);
+						
+						buffer.close();
+						
+						System.out.println("Archivo actualizado exitosamente!");
+
+					} else {
+						System.out.println("Índice de factura no válido.");
+					}
+					
+					} else {
+						System.out.println("No hay facturas en la carpeta contenedora!");
+					}
+				} else {
+					System.out.println("La carpeta no existe.");
+				}
+
+			} catch(IOException e) {
+				e.printStackTrace();
+			}
+		
+			System.out.println("Desea leer otra factura?");
+			System.out.println("1. SI");
+			System.out.println("0. NO");
+			int opcionAccion = sc.nextInt();
+			
+			if(opcionAccion == 1) {
+				realizarOtraAccion = true;
+			} else if(opcionAccion == 0) {
+				realizarOtraAccion = false;
+			} else {
+				System.out.println("Opción no válida. Se asume que no desea leer otra factura.");
+				realizarOtraAccion = false;
+			}
+			
+		}
+		
+		
 	}
 
 }

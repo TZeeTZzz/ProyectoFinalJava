@@ -609,6 +609,10 @@ public class Main {
 							volverUnaSeccionAtras(volverHaciaAtras);
 
 							break;
+						case 5: 
+							
+							ejecutarMetodosManejoDeArchivos.actualizarArchivo();
+							
 						case 0: 
 							
 							volverHaciaAtras.set(true);
