@@ -525,7 +525,7 @@ public class Main {
 						  System.out.println("Seleccione según corresponda:");
 						  System.out.println("1. Ver gastos");
 						  System.out.println("2. Buscar gastos");
-						  System.out.println("3. Agregar nueva gasto");
+						  System.out.println("3. Agregar nuevo gasto");
 						  System.out.println("4. Eliminar gasto del sistema");
 						  System.out.println("5. Volver una sección atrás");
 						  System.out.println("0. Volver al menú principal");
@@ -576,14 +576,18 @@ public class Main {
 							break;
 						  }	
 						  
+						 break;
+						  
 				case 4://GESTIONAR FACTURAS.
 					System.out.println("Bienvenido a la sección de gestion de facturas!");
 					System.out.println("Seleccione según corresponda: ");
 					System.out.println("1. Generar factura.");
-					System.out.println("2. Ver facturas.");
-					System.out.println("3. Eliminar facturas.");
-					System.out.println("4. Volver una sección atrás.");
+					System.out.println("2. Actualizar factura.");
+					System.out.println("3. Ver facturas.");
+					System.out.println("4. Eliminar facturas.");
+					System.out.println("5. Volver una sección atrás.");
 					System.out.println("0. Volver al menú.");
+					scanner.nextLine();
 					int opcionFacturas = scanner.nextInt();
 					
 					ManejoDeArchivos ejecutarMetodosManejoDeArchivos = new ManejoDeArchivos();
@@ -592,27 +596,31 @@ public class Main {
 						case 1:
 							
 							ejecutarMetodosManejoDeArchivos.crearYEscribirArchivo();
+				
 							
 							break;
-						case 2: 
+							
+						case 2:
+							
+							ejecutarMetodosManejoDeArchivos.actualizarArchivo();
+
+							
+							break;
+						case 3: 
 							
 							ejecutarMetodosManejoDeArchivos.leerArchivo();
 							
 							break;
-						case 3:
+						case 4:
 							
 							ejecutarMetodosManejoDeArchivos.eliminarArchivo();
 							
 							break;
-						case 4: 
+						case 5: 
 							
 							volverUnaSeccionAtras(volverHaciaAtras);
 
-							break;
-						case 5: 
-							
-							ejecutarMetodosManejoDeArchivos.actualizarArchivo();
-							
+							break;					
 						case 0: 
 							
 							volverHaciaAtras.set(true);
