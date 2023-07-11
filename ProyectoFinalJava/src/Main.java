@@ -449,14 +449,20 @@ public class Main {
 	
 					switch(opcionTransaccion) {
 					case 1:
+						
 						volverUnaSeccionAtras(volverHaciaAtras);
+						
 						break;
 					case 0: 
+						
 						volverHaciaAtras.set(true);
+						
 						break;
 					default:
+						
 						System.out.println("Opcion inválida. Vuelva a intentarlo!");
 						volverHaciaAtras.set(false);
+						
 						break;	
 					}
 					
@@ -518,7 +524,9 @@ public class Main {
 						  break;
 
 					  case 0:
+						  
 							volverHaciaAtras.set(true);
+							
 						  break;
 
 
@@ -577,7 +585,9 @@ public class Main {
 							  break;
 							  
 						  case 0:
+							  
 								volverHaciaAtras.set(true);
+								
 							  break;
 						default:
 							System.out.println("Opcion inválida. Vuelva a intentarlo!");
@@ -588,10 +598,9 @@ public class Main {
 					System.out.println("Bienvenido a la sección de gestion de facturas!");
 					System.out.println("Seleccione según corresponda: ");
 					System.out.println("1. Generar factura.");
-					System.out.println("2. Actualizar facturas.");
-					System.out.println("3. Ver facturas.");
-					System.out.println("4. Eliminar facturas.");
-					System.out.println("5. Volver una sección atrás.");
+					System.out.println("2. Ver facturas.");
+					System.out.println("3. Eliminar facturas.");
+					System.out.println("4. Volver una sección atrás.");
 					System.out.println("0. Volver al menú.");
 					int opcionFacturas = scanner.nextInt();
 					
@@ -599,19 +608,24 @@ public class Main {
 					
 					switch(opcionFacturas) {
 						case 1:
+							
 							ejecutarMetodosManejoDeArchivos.crearYEscribirArchivo();
+							
 							break;
-						case 2:
-							break;
-						case 3: 
+						case 2: 
+							
 							ejecutarMetodosManejoDeArchivos.leerArchivo();
+							
 							break;
-						case 4:
+						case 3:
+							
+							ejecutarMetodosManejoDeArchivos.eliminarArchivo();
+							
 							break;
-						case 5: 
+						case 4: 
 							
 							volverUnaSeccionAtras(volverHaciaAtras);
-							 
+
 							break;
 						case 0: 
 							
@@ -620,7 +634,9 @@ public class Main {
 							break;
 							
 						default: 
+							
 							System.out.println("Opción inválida!");
+							
 							break;
 					
 					}
